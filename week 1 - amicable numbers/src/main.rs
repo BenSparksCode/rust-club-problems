@@ -1,25 +1,34 @@
 // https://projecteuler.net/problem=21
 
+use std::collections::HashMap;
+
 fn main() {
     println!("Hello, world!");
+
+    let mut numbersAdded = HashMap::new();
+    numbersAdded.insert(0, false);
 
     let mut i: i32 = 0;
     let mut x: u32 = 0;
     let mut y: u32 = 0;
     let mut sum: u32 = 0;
+    let mut res: (u32, u32);
 
-    findDivisors(220);
-    findDivisors(284);
-
-    // for i in 2..10000 {
-    //     (x, y) = getAmicablePair(i);
-    //     if x == 0 {
-    //         break;
-    //     }
-    //     // TODO store x,y as amicables in hash map (to skip second check)
-    //     sum += x + y;
-    //     println!("Amicable: {} and {}", x, y);
-    // }
+    for i in 2..10000 {
+        // if (numbersAdded.get(i)) {
+        //     continue;
+        // }
+        res = getAmicablePair(i);
+        x = res.0;
+        if x == 0 {
+            break;
+        }
+        // TODO store x,y as amicables in hash map (to skip second check)
+        // sum += x + y; //TODO use this when hashmaps working
+        sum += x;
+        // println!("Amicable: {} and {}", x, y);
+        println!("Amicable: {}", x);
+    }
 
     println!("{:?}", sum)
 }
