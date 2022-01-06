@@ -8,23 +8,40 @@ fn main() {
     let mut y: u32 = 0;
     let mut sum: u32 = 0;
 
-    for i in 2..10000 {
-        (x, y) = getAmicablePair(i);
-        if x == 0 {
-            break;
-        }
-        // TODO store x,y as amicables in hash map (to skip second check)
-        sum += x + y;
-        println!("Amicable: {} and {}", x, y);
-    }
+    findDivisors(220);
+    findDivisors(284);
+
+    // for i in 2..10000 {
+    //     (x, y) = getAmicablePair(i);
+    //     if x == 0 {
+    //         break;
+    //     }
+    //     // TODO store x,y as amicables in hash map (to skip second check)
+    //     sum += x + y;
+    //     println!("Amicable: {} and {}", x, y);
+    // }
 
     println!("{:?}", sum)
 }
 
 fn findDivisors(x: u32) -> std::vec::Vec<u32> {
-    let mut divisors: std::vec::Vec<u32> = std::vec.new();
-    let mut i = 0;
-    while i < (x.sqrt() + 1) as u32 {}
+    let mut divisors: Vec<u32> = vec![1];
+    let max = ((x as f32).sqrt().ceil() as u32) + 1;
+    for i in 2..max {
+        if x % i == 0 {
+            divisors.push(i);
+            // Only take square root of x as factor once
+            if i * i != x {
+                divisors.push(x / i)
+            }
+        }
+    }
+
+    divisors.sort();
+
+    println!("{:?}", divisors);
+
+    return divisors;
 }
 
 // If x is not amicable number, return (0,0)
