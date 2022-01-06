@@ -22,8 +22,9 @@ fn main() {
 }
 
 fn findDivisors(x: u32) -> std::vec::Vec<u32> {
+    let mut divisors: std::vec::Vec<u32> = std::vec.new();
     let mut i = 0;
-    while i < (x.sqrt() + 1) {}
+    while i < (x.sqrt() + 1) as u32 {}
 }
 
 // If x is not amicable number, return (0,0)
