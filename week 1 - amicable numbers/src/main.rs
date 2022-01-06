@@ -3,7 +3,8 @@
 use std::collections::HashMap;
 
 fn main() {
-    println!("Hello, world!");
+    // TODO change to 10000
+    const MAX_NUM: u32 = 300;
 
     let mut numbersAdded = HashMap::new();
     numbersAdded.insert(0, false);
@@ -14,14 +15,18 @@ fn main() {
     let mut sum: u32 = 0;
     let mut res: (u32, u32);
 
-    for i in 2..10000 {
+    // res = getAmicablePair(220);
+    // println!("{:?}", res);
+    // println!("{:?}", res.0 + res.1);
+
+    for i in 2..MAX_NUM + 1 {
         // if (numbersAdded.get(i)) {
         //     continue;
         // }
         res = getAmicablePair(i);
         x = res.0;
         if x == 0 {
-            break;
+            continue;
         }
         // TODO store x,y as amicables in hash map (to skip second check)
         // sum += x + y; //TODO use this when hashmaps working
@@ -47,8 +52,7 @@ fn findDivisors(x: u32) -> std::vec::Vec<u32> {
     }
 
     divisors.sort();
-
-    println!("{:?}", divisors);
+    divisors.dedup();
 
     return divisors;
 }
@@ -56,16 +60,16 @@ fn findDivisors(x: u32) -> std::vec::Vec<u32> {
 // If x is not amicable number, return (0,0)
 fn getAmicablePair(x: u32) -> (u32, u32) {
     let x_factors: Vec<u32> = findDivisors(x);
+    if x_factors.len() == 1 {
+        return (0, 0);
+    }
 
-    // TODO sum factors to get y
-    let y: u32 = 0; // TODO change to sum
-
+    let y: u32 = x_factors.iter().sum();
     let y_factors: Vec<u32> = findDivisors(y);
+    let y_factor_sum: u32 = y_factors.iter().sum();
 
-    let y_factor_sum = 0; // TODO sum
-
-    if (y_factor_sum != x) {
-        return (u32::MIN, u32::MIN);
+    if (y_factor_sum != x || x == y) {
+        return (0, 0);
     }
 
     return (x, y);
