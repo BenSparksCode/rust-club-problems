@@ -4,7 +4,7 @@ use std::collections::HashMap;
 
 fn main() {
     // TODO change to 10000
-    const MAX_NUM: u32 = 300;
+    const MAX_NUM: u32 = 10000;
 
     let mut numbersAdded = HashMap::new();
     numbersAdded.insert(0, false);
